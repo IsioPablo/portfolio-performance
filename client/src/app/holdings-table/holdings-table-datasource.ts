@@ -6,32 +6,135 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 
 // TODO: Replace this with your own data model type
 export interface HoldingsTableItem {
-  name: string;
-  id: number;
+  ticker: string;
+  dataDate: Date;
+  unitsHeld: number;
+  price: number;
+  holdingValue?: number;
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: HoldingsTableItem[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-  {id: 12, name: 'Magnesium'},
-  {id: 13, name: 'Aluminum'},
-  {id: 14, name: 'Silicon'},
-  {id: 15, name: 'Phosphorus'},
-  {id: 16, name: 'Sulfur'},
-  {id: 17, name: 'Chlorine'},
-  {id: 18, name: 'Argon'},
-  {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
+const MAIN_DATA: HoldingsTableItem[] = [
+    {
+      ticker: "Aquasure",
+      dataDate: new Date(),
+      unitsHeld: 3,
+      price: 843.092
+    },
+    {
+      ticker: "Opportech",
+      dataDate: new Date(),
+      unitsHeld: 15,
+      price: 571.925
+    },
+    {
+      ticker: "Tourmania",
+      dataDate: new Date(),
+      unitsHeld: 26,
+      price: 767.525
+    },
+    {
+      ticker: "Providco",
+      dataDate: new Date(),
+      unitsHeld: 17,
+      price: 460.261
+    },
+    {
+      ticker: "Polaria",
+      dataDate: new Date(),
+      unitsHeld: 17,
+      price: 1740.035
+    },
+    {
+      ticker: "Netur",
+      dataDate: new Date(),
+      unitsHeld: 12,
+      price: 1933.886
+    },
+    {
+      ticker: "Buzzness",
+      dataDate: new Date(),
+      unitsHeld: 17,
+      price: 1346.748
+    },
+    {
+      ticker: "Recritube",
+      dataDate: new Date(),
+      unitsHeld: 3,
+      price: 945.81
+    },
+    {
+      ticker: "Deepends",
+      dataDate: new Date(),
+      unitsHeld: 33,
+      price: 180.94
+    },
+    {
+      ticker: "Viasia",
+      dataDate: new Date(),
+      unitsHeld: 30,
+      price: 350.626
+    },
+    {
+      ticker: "Polarium",
+      dataDate: new Date(),
+      unitsHeld: 21,
+      price: 1831.847
+    },
+    {
+      ticker: "Singavera",
+      dataDate: new Date(),
+      unitsHeld: 25,
+      price: 1847.021
+    },
+    {
+      ticker: "Gronk",
+      dataDate: new Date(),
+      unitsHeld: 9,
+      price: 675.257
+    },
+    {
+      ticker: "Hotcakes",
+      dataDate: new Date(),
+      unitsHeld: 50,
+      price: 57.505
+    },
+    {
+      ticker: "Aquazure",
+      dataDate: new Date(),
+      unitsHeld: 6,
+      price: 931.974
+    },
+    {
+      ticker: "Snips",
+      dataDate: new Date(),
+      unitsHeld: 36,
+      price: 1334.115
+    },
+    {
+      ticker: "Ultrimax",
+      dataDate: new Date(),
+      unitsHeld: 46,
+      price: 1552.324
+    },
+    {
+      ticker: "Mazuda",
+      dataDate: new Date(),
+      unitsHeld: 5,
+      price: 1940.262
+    },
+    {
+      ticker: "Extro",
+      dataDate: new Date(),
+      unitsHeld: 5,
+      price: 1138.259
+    },
+    {
+      ticker: "Comtest",
+      dataDate: new Date(),
+      unitsHeld: 6,
+      price: 1933.893
+    },
 ];
 
 /**
@@ -40,7 +143,7 @@ const EXAMPLE_DATA: HoldingsTableItem[] = [
  * (including sorting, pagination, and filtering).
  */
 export class HoldingsTableDataSource extends DataSource<HoldingsTableItem> {
-  data: HoldingsTableItem[] = EXAMPLE_DATA;
+  data: HoldingsTableItem[] = MAIN_DATA;
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
@@ -97,8 +200,11 @@ export class HoldingsTableDataSource extends DataSource<HoldingsTableItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'ticker': return compare(+a.ticker, +b.ticker, isAsc);
+        case 'dataDate': return compare(+a.dataDate, +b.dataDate, isAsc);
+        case 'unitsHeld': return compare(+a.unitsHeld, +b.unitsHeld, isAsc);
+        case 'price': return compare(+a.price, +b.price, isAsc);
+        //case 'holdingValue': return compare(+a.holdingValue, +b.holdingValue, isAsc);
         default: return 0;
       }
     });

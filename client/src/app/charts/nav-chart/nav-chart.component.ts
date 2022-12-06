@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ChartOptions, Color, ChartType, ChartConfiguration, Chart } from 'chart.js';
 
 @Component({
@@ -7,26 +7,26 @@ import { ChartOptions, Color, ChartType, ChartConfiguration, Chart } from 'chart
   styleUrls: ['./nav-chart.component.css']
 })
 export class NavChartComponent {
+
+  @Input() inputData: any = [65, 59, 80, 81, 56, 55, 40];
+
   public lineChartData: ChartConfiguration['data'] = {
     datasets : [
       {
-        data: [65, 59, 80, 81, 56, 55, 40],
-        label: 'Series A',
+        data: this.inputData,
         borderColor: 'black',
         backgroundColor: 'rgba(255,0,0,0.3)',
-
       },
     ],
-    labels : ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+    labels : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August']
   }
   
   public lineChartOptions : ChartConfiguration['options'] = {
     responsive: true,
     plugins: {
-      legend: {display : true},
+      legend: {display : false},
     },
   }
-  public lineChartLegend = true;
   public lineChartType: ChartType = 'line';
   public lineChartPlugins = [];
 

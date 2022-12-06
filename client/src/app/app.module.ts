@@ -22,6 +22,7 @@ import { HoldingsTableComponent } from './holdings-table/holdings-table.componen
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { DatePipe, DecimalPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatPaginatorModule,
     MatSortModule
   ],
-  providers: [],
+  providers: [DatePipe, DecimalPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
