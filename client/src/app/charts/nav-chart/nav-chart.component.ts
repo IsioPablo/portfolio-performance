@@ -63,8 +63,8 @@ export class NavChartComponent {
     this.chart?.chart?.update();
   }
 
-  onClick() {
-    this.aggregateData(this.inputData); 
-    this.chart?.chart?.update();
-  }
+  // onClick() {
+  //   this.aggregateData(this.inputData); 
+  //   this.chart?.chart?.update();
+  // }
 }

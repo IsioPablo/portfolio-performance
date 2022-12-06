@@ -31,7 +31,7 @@ export class HoldingsTableComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    //this.table.dataSource = this.dataSource;
+    this.table.dataSource = this.dataSource;
   }
 
   ngOnChanges(changes: SimpleChanges){
@@ -39,6 +39,7 @@ export class HoldingsTableComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+    this.newItemEvent.emit(this.inputData);
   }
 
   onChange() {
