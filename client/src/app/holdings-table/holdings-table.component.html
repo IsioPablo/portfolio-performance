@@ -14,7 +14,7 @@
     <ng-container matColumnDef="unitsHeld">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Units Held</th>
       <td mat-cell *matCellDef="let row">
-        <input matInput placeholder="{{row.unitsHeld}}" type="text" name="unitsHeld" id="unitsHeld" class="form-control">
+        <input matInput placeholder="{{row.unitsHeld}}" type="text" name="unitsHeld" id="unitsHeld" class="form-control" [(ngModel)]="row.unitsHeld" (ngModelChange)="onChange()">
       </td>
     </ng-container>
     <!-- Price Column -->

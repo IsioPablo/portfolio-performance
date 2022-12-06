@@ -23,6 +23,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { DatePipe, DecimalPipe } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,10 @@ import { DatePipe, DecimalPipe } from '@angular/common';
     MatMenuModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    HttpClientModule,
+    FormsModule,
+    NgChartsModule
   ],
   providers: [DatePipe, DecimalPipe],
   bootstrap: [AppComponent]

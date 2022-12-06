@@ -14,13 +14,13 @@
     </mat-grid-tile> -->
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
       <app-card title="Portfolio NAV">
-          <app-nav-chart></app-nav-chart>
+          <app-nav-chart [inputData]="chartData"></app-nav-chart>
       </app-card>
     </mat-grid-tile>
     <!--Table-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.table?.cols" [rowspan]="( cardLayout | async )?.table?.rows">
       <app-card title="Holdings">
-        <app-holdings-table></app-holdings-table> 
+        <app-holdings-table [inputData]="data" (newItemEvent)="updateChart($event)"></app-holdings-table> 
       </app-card>
     </mat-grid-tile>
   </mat-grid-list>

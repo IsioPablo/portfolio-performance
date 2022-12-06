@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges, ViewChild } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { DataServiceService } from '../services/data-service.service';
+import { StockPosition } from '../models/stockPosition';
 
 @Component({
   selector: 'app-dash',
@@ -8,6 +10,10 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
   styleUrls: ['./dash.component.css']
 })
 export class DashComponent {
+
+  data : StockPosition[] = [];
+  chartData : StockPosition[] = [];
+
 
   cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -28,5 +34,22 @@ export class DashComponent {
       };
     })
   );
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, private _dataService : DataServiceService) {}
+
+  ngOnInit() {
+    this._dataService.getData().subscribe({
+      next : (response : any) => {
+        this.data = response
+      },
+      error: (error : any) => {
+        console.log(error);
+      }
+    });
+  }
+
+  updateChart(newItem: StockPosition[]) {
+    this.chartData = newItem;
+  }
+
+  
 }
